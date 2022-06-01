@@ -4,7 +4,28 @@
 
 body {
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 0;
     margin: 0;
     font-family: var(--fontPoppins);
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+h3,
+img,
+p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
