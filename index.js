@@ -30,11 +30,18 @@ class Weather {
                     const wind = response.wind.speed.toString();
                     const clouds = response.clouds.all.toString();
                     const climate = response.weather[0].main;
+
+                    this.updateWeatherInfo(cityName, temperature, feelsLike, clouds, wind, climate);                    
                 });
-            }
-        catch (err) {
-            console.error(err);
         }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
+    updateWeatherInfo(cityName, temperature, feelsLike, clouds, wind, climate) {
+        weatherInfo.innerText = `In ${cityName}, temperature is ${temperature}°C but feels like ${feelsLike}°C.
+                                It's ${clouds}% cloudy, with wind speed of ${wind} and the climate is ${climate}.`;
     }
 }
 
