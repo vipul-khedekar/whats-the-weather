@@ -1,5 +1,7 @@
 const cityForm = document.querySelector(`[data-city-form]`);
 const cityInput = document.querySelector(`[data-city-input]`);
+const weatherInfo = document.querySelector(`[data-weather-info]`);
+const climateImg = document.querySelector(`[data-climate-img]`);
 
 const storedData = (() => {
     const apiKey = `0d056e5e90bb186470326a358eb17b3c`;
@@ -15,16 +17,21 @@ class Weather {
         // empty;
     }
 
-    async fetchData(apiUrl) {
+    async fetchAndProcessData(apiUrl) {
         try {
             fetch(apiUrl, {mode: `cors`})
                 .then((response) => {
                     return response.json();
                 })
                 .then((response) => {
-                console.log(Math.round(response.main.temp - storedData.tempKelvin));
-            });
-        }
+                    const temperature = (response.main.temp - storedData.tempKelvin).toFixed(1).toString();
+                    const cityName = response.name.toString();
+                    const feelsLike = (response.main.feels_like - storedData.tempKelvin).toFixed(1).toString();
+                    const wind = response.wind.speed.toString();
+                    const clouds = response.clouds.all.toString();
+                    const climate = response.weather[0].main;
+                });
+            }
         catch (err) {
             console.error(err);
         }
@@ -37,6 +44,6 @@ cityForm.addEventListener(`submit`, (e) => {
     e.preventDefault();
     if(cityInput.value === ``) return;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${storedData.apiKey}`;
-    weatherApp.fetchData(apiUrl);
+    weatherApp.fetchAndProcessData(apiUrl);
     cityInput.value = null;
 });
