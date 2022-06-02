@@ -52,3 +52,23 @@ p {
     width: 5rem;
     font-size: 1rem;
 }
+
+.app-container > img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100px;
+    width: 100px;
+    margin-left: 45%;
+}
+
+.app-container > p {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    flex-wrap: wrap;
+    height: 10vh;
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 2;
+}
